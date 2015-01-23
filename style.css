@@ -2,3 +2,16 @@
   background: black;
   color: white;
 }
+
+body div {
+  position: fixed;
+}
+
+.layer-1 {
+  background: white;
+  z-index: 10;
+}
+
+.layer-2 {
+  z-index: 1;
+}
