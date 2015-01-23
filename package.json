@@ -1,0 +1,19 @@
+{
+  "name": "abandonedbeats.com",
+  "version": "1.0.0",
+  "description": "A website for music, yo",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/lowe0292/abandonedbeats.com"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lowe0292/abandonedbeats.com/issues"
+  },
+  "homepage": "https://github.com/lowe0292/abandonedbeats.com"
+}

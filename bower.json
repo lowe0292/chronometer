@@ -1,0 +1,19 @@
+{
+  "name": "abandonedbeats.com",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lowe0292/abandonedbeats.com",
+  "authors": [
+    "Scott Lowe <scott@entercastle.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.2"
+  }
+}
