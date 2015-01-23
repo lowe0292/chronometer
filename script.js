@@ -1,1 +1,1 @@
-console.log('Hey');
+var w = $(window).width();
