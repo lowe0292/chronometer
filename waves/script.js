@@ -183,7 +183,7 @@ $(document).ready(function () {
 
 
       // Update the time and draw again
-      draw.seconds = draw.seconds - .007;
+      draw.seconds = draw.seconds - .004;
       draw.t = draw.seconds*Math.PI;
       setTimeout(draw, 35);
     };
