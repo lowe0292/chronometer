@@ -13,10 +13,6 @@ $(document).ready(function () {
     $canvas.width(width);
   }
 
-  $(window).resize(function () {
-    repaint();
-  });
-
   repaint();
 
 
@@ -88,91 +84,93 @@ $(document).ready(function () {
 
     setInterval(updateGradient,10);
 
-    (function () {
+    if (typeof(Humble) == 'undefined') window.Humble = {};
+    Humble.Trig = {};
+    Humble.Trig.init = init;
 
-      if (typeof(Humble) == 'undefined') window.Humble = {};
-      Humble.Trig = {};
-      Humble.Trig.init = init;
+    var unit = 100,
+    canvas, context, canvas2, context2, draw, xAxis, yAxis;
 
-      var unit = 100,
-      canvas, context, canvas2, context2, draw, xAxis, yAxis;
+    /**
+     * Init function.
+     * 
+     * Initialize variables and begin the animation.
+     */
+    function init() {
 
-      /**
-       * Init function.
-       * 
-       * Initialize variables and begin the animation.
-       */
-      function init() {
+      canvas = document.getElementById("waves");
 
-        canvas = document.getElementById("waves");
+      canvas.width = width;
+      canvas.height = height;
 
-        canvas.width = width;
-        canvas.height = height;
+      context = canvas.getContext("2d");
+      context.font = '18px sans-serif';
+      context.strokeStyle = '#000';
+      context.lineJoin = 'round';
 
-        context = canvas.getContext("2d");
-        context.font = '18px sans-serif';
-        context.strokeStyle = '#000';
-        context.lineJoin = 'round';
+      xAxis = Math.floor(height/2);
+      yAxis = Math.floor(width/4);
 
-        xAxis = Math.floor(height/2);
-        yAxis = Math.floor(width/4);
+      context.save();
+    }
 
-        context.save();
-        draw();
+    /**
+     * Draw animation function.
+     * 
+     * This function draws one frame of the animation, waits 20ms, and then calls
+     * itself again.
+     */
+    draw = function () {
+
+      // Clear the canvas
+      context.clearRect(0, 0, width, height);
+
+      // Set styles for animated graphics
+      context.save();
+      context.strokeStyle = '#fff';
+      context.lineWidth = 5;
+
+      // Draw the sine curve at time draw.t, as well as the circle.
+      context.beginPath();
+      drawSine(draw.t);
+      context.stroke();
+
+      // Update the time and draw again
+      draw.seconds = draw.seconds - .007;
+      draw.t = draw.seconds*Math.PI;
+      setTimeout(draw, 35);
+    };
+    draw.seconds = 0;
+    draw.t = 0;
+
+    /**
+     * Function to draw sine
+     * 
+     * The sine curve is drawn in 10px segments starting at the origin. 
+     */
+    function drawSine(t) {
+
+      // Set the initial x and y, starting at 0,0 and translating to the origin on
+      // the canvas.
+      var x = t;
+      var y = Math.sin(x);
+      context.moveTo(yAxis, unit*y+xAxis);
+
+      // Loop to draw segments
+      for (i = yAxis; i <= width; i += 10) {
+        x = t+(-yAxis+i)/unit;
+        y = Math.sin(x);
+        context.lineTo(i, unit*y+xAxis);
       }
+    }
 
-      /**
-       * Draw animation function.
-       * 
-       * This function draws one frame of the animation, waits 20ms, and then calls
-       * itself again.
-       */
-      draw = function () {
+    Humble.Trig.init();
+    draw();
 
-        // Clear the canvas
-        context.clearRect(0, 0, width, height);
+    $(window).resize(function () {
+      repaint();
+      Humble.Trig.init();
+    });
 
-        // Set styles for animated graphics
-        context.save();
-        context.strokeStyle = '#fff';
-        context.lineWidth = 5;
-
-        // Draw the sine curve at time draw.t, as well as the circle.
-        context.beginPath();
-        drawSine(draw.t);
-        context.stroke();
-
-        // Update the time and draw again
-        draw.seconds = draw.seconds - .007;
-        draw.t = draw.seconds*Math.PI;
-        setTimeout(draw, 35);
-      };
-      draw.seconds = 0;
-      draw.t = 0;
-
-      /**
-       * Function to draw sine
-       * 
-       * The sine curve is drawn in 10px segments starting at the origin. 
-       */
-      function drawSine(t) {
-
-        // Set the initial x and y, starting at 0,0 and translating to the origin on
-        // the canvas.
-        var x = t;
-        var y = Math.sin(x);
-        context.moveTo(yAxis, unit*y+xAxis);
-
-        // Loop to draw segments
-        for (i = yAxis; i <= width; i += 10) {
-          x = t+(-yAxis+i)/unit;
-          y = Math.sin(x);
-          context.lineTo(i, unit*y+xAxis);
-        }
-      }
-
-      Humble.Trig.init()
-
-    })();
 
 });
