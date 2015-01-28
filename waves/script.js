@@ -22,8 +22,9 @@ $(document).ready(function () {
     var extraX = width - minDimension;
     var extraY = height - minDimension;
 
-    $canvas.height(height);
-    $canvas.width(width);
+    $canvas.height(minDimension * 3 / 5);
+    $canvas.width(minDimension * 3 / 5);
+    $canvas.offset({top: minDimension * 1 / 5 + extraY / 2, left: minDimension * 1 / 5 + extraX / 2});
     $top.height(minDimension * 1 / 5 + extraY / 2);
     $top.width(width);
     $bottom.height(minDimension * 1 / 5 + extraY / 2);
