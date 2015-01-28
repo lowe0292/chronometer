@@ -25,13 +25,6 @@ $(document).ready(function () {
     $bottomRight.height(minDimension * 1 / 5);
     $bottomRight.width(minDimension * 1 / 5);
 
-    // position everything
-    if (width > height) {
-      // landscape orientation
-      var extra = width - height;
-
-    }
-
     var extraX = width - minDimension;
     var extraY = height - minDimension;
 

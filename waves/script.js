@@ -3,16 +3,49 @@ $(document).ready(function () {
   var width;
   var unit = 100,
   canvas, context, canvas2, context2, draw, xAxis, yAxis;
+  var $canvas = $('.canvas');
+  var $top = $('#top');
+  var $bottom = $('#bottom');
+  var $left = $('#left');
+  var $right = $('#right');
+  var $topLeft = $('#top-left');
+  var $topRight = $('#top-right');
+  var $bottomLeft = $('#bottom-left');
+  var $bottomRight = $('#bottom-right');
 
   var repaint = function () {
-    w = $(window).width();
     //get viewport height and width
     height = $(window).height();
     width = $(window).width();
 
-    var $canvas = $('.canvas');
+    var minDimension = Math.min(height, width);
+    var extraX = width - minDimension;
+    var extraY = height - minDimension;
+
     $canvas.height(height);
     $canvas.width(width);
+    $top.height(minDimension * 1 / 5 + extraY / 2);
+    $top.width(width);
+    $bottom.height(minDimension * 1 / 5 + extraY / 2);
+    $bottom.width(width);
+    $bottom.offset({top: minDimension * 4 / 5 + extraY / 2});
+    $left.height(height);
+    $left.width(minDimension * 1 / 5 + extraX / 2);
+    $right.height(height);
+    $right.width(minDimension * 1 / 5 + extraX / 2);
+    $right.offset({left: minDimension * 4 / 5 + extraX / 2});
+    $topLeft.height(minDimension * 1 / 5)
+    $topLeft.width(minDimension * 1 / 5)
+    $topLeft.offset({top: minDimension * 1 / 5 + extraY / 2, left: minDimension * 1 / 5 + extraX / 2});
+    $topRight.height(minDimension * 1 / 5)
+    $topRight.width(minDimension * 1 / 5)
+    $topRight.offset({top: minDimension * 1 / 5 + extraY / 2, left: minDimension * 3 / 5 + extraX / 2});
+    $bottomLeft.height(minDimension * 1 / 5)
+    $bottomLeft.width(minDimension * 1 / 5)
+    $bottomLeft.offset({top: minDimension * 3 / 5 + extraY / 2, left: minDimension * 1 / 5 + extraX / 2});
+    $bottomRight.height(minDimension * 1 / 5)
+    $bottomRight.width(minDimension * 1 / 5)
+    $bottomRight.offset({top: minDimension * 3 / 5 + extraY / 2, left: minDimension * 3 / 5 + extraX / 2});
 
     canvas = document.getElementById("waves");
 
