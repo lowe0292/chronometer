@@ -21,7 +21,6 @@ $(document).ready(function () {
 
     context = canvas.getContext("2d");
     context.font = '18px sans-serif';
-    context.strokeStyle = '#000';
     context.lineJoin = 'round';
 
     xAxis = Math.floor(height/2);
@@ -116,31 +115,34 @@ $(document).ready(function () {
       context.clearRect(0, 0, width, height);
 
       context.save();
-      context.strokeStyle = '#fff';
       context.lineWidth = 1;
       var f1 = function (x) { return 4 / Math.PI * Math.sin(Math.PI * x); }
       var f2 = function (x) { return 4 / (3 * Math.PI) * Math.sin(3 * Math.PI * x); }
       var f3 = function (x) { return 4 / (5 * Math.PI) * Math.sin(5 * Math.PI * x); }
       var f4 = function (x) { return 4 / (7 * Math.PI) * Math.sin(7 * Math.PI * x); }
       var f5 = function (x) { return 4 / (9 * Math.PI) * Math.sin(9 * Math.PI * x); }
+      context.strokeStyle = '#000000';
       context.beginPath();
       drawFunction(draw.t, f1);
       context.stroke();
+      context.strokeStyle = '#551A8B';
       context.beginPath();
       drawFunction(draw.t, f2);
       context.stroke();
+      context.strokeStyle = '#D4AF37'
       context.beginPath();
       drawFunction(draw.t, f3);
       context.stroke();
+      context.strokeStyle = '#00FFCC'
       context.beginPath();
       drawFunction(draw.t, f4);
       context.stroke();
+      context.strokeStyle = '#FF0000'
       context.beginPath();
       drawFunction(draw.t, f5);
       context.stroke();
-      context.save();
-      context.strokeStyle = '#fff'
-      context.lineWidth = 5;
+      context.strokeStyle = '#CCFFFF'
+      context.lineWidth = 3;
       var sum = function (x) { return f1(x) + f2(x) + f3(x) + f4(x) + f5(x); };
       context.beginPath();
       drawFunction(draw.t, sum);
