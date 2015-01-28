@@ -2,6 +2,10 @@ body div {
   position: fixed;
 }
 
+canvas {
+  position: fixed;
+}
+
 .layer-1 {
   background: white;
   z-index: 10;
