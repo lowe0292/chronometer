@@ -210,6 +210,9 @@ $(document).ready(function () {
     $('#waves').hammer().on('swiperight dragright', function (event) {
       document.getElementById('drums').play();
       $('.layer-1').hide();
+      $('.layer-2').height(height);
+      $('.layer-2').width(width);
+      $('.layer-2').offset({ top: 0, left: 0 });
     });
 
     $('#waves').hammer().on('swipeleft dragleft', function (event) {
