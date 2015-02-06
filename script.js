@@ -207,12 +207,12 @@ $(document).ready(function () {
       repaint();
     });
 
-    $('#waves').hammer().on('swiperight', function (event) {
+    $('#waves').hammer().on('swiperight dragright', function (event) {
       document.getElementById('drums').play();
       $('.layer-1').hide();
     });
 
-    $('#waves').hammer().on('swipeleft', function (event) {
+    $('#waves').hammer().on('swipeleft dragleft', function (event) {
       document.getElementById('drums').pause();
       $('.layer-1').show();
     });
